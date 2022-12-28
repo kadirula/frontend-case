@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Front-End Case</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+    <div class="site-circle"></div>
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="header__logo text-center">
+                        <img src="assets/logo.png" class="img-fluid" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-tab">
+                        <div class="product-tab__header">
+                            <div class="product-tab__item active" data-tab="models">Models</div>
+                            <div class="product-tab__item" data-tab="colors">Colors</div>
+                            <div class="product-tab__item" data-tab="accessories">Accessories</div>
+                            <div class="product-tab__item" data-tab="summary">Summary</div>
+                        </div>
+                        <div class="product-tab__body">
+                            <div class="product-tab__content active" id="models">
+                                <div class="product-model"></div>
+                            </div>
+                            <div class="product-tab__content" id="colors">
+                                <p class="product-tab__content-desc">
+                                    Hayalindeki araca dair rengini seç, tarzını hemen yansıt
+                                </p>
+                                <div class="product-color"></div>
+                            </div>
+                            <div class="product-tab__content" id="accessories">
+                                <p class="product-tab__content-desc">
+                                    Seçtiğin araca ait özellikler, konforun ve yaşam stilini belirler.
+                                </p>
+                                <div class="product-property">
+                                    <div class="product-property__item active">
+                                        <h5 class="product-property__title">SEAT FREE SYNC PACK EASY JET</h5>
+                                        <span class="product-property__price">7.500 TL</span>
+                                        <div class="product-property__select">
+                                            <img src="assets/select.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="product-property__item">
+                                        <h5 class="product-property__title">MAINTENANCE PROGRAM UPGRADE</h5>
+                                        <span class="product-property__price">1.250 TL</span>
+                                        <div class="product-property__select">
+                                            <img src="assets/select.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="product-property__item">
+                                        <h5 class="product-property__title">SEAT FREE SYNC PACK EASY JET</h5>
+                                        <span class="product-property__price">13.700 TL</span>
+                                        <div class="product-property__select">
+                                            <img src="assets/select.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="product-property__item">
+                                        <h5 class="product-property__title">SEAT FREE SYNC PACK EASY JET</h5>
+                                        <span class="product-property__price">7500 TL</span>
+                                        <div class="product-property__select">
+                                            <img src="assets/select.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="product-property__item">
+                                        <h5 class="product-property__title">SEAT FREE SYNC PACK EASY JET</h5>
+                                        <span class="product-property__price">7500 TL</span>
+                                        <div class="product-property__select">
+                                            <img src="assets/select.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="product-property__item">
+                                        <h5 class="product-property__title">SEAT FREE SYNC PACK EASY JET</h5>
+                                        <span class="product-property__price">7500 TL</span>
+                                        <div class="product-property__select">
+                                            <img src="assets/select.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="product-property__item">
+                                        <h5 class="product-property__title">SEAT FREE SYNC PACK EASY JET</h5>
+                                        <span class="product-property__price">7500 TL</span>
+                                        <div class="product-property__select">
+                                            <img src="assets/select.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="product-property__item">
+                                        <h5 class="product-property__title">SEAT FREE SYNC PACK EASY JET</h5>
+                                        <span class="product-property__price">7500 TL</span>
+                                        <div class="product-property__select">
+                                            <img src="assets/select.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="product-property__item">
+                                        <h5 class="product-property__title">SEAT FREE SYNC PACK EASY JET</h5>
+                                        <span class="product-property__price">7500 TL</span>
+                                        <div class="product-property__select">
+                                            <img src="assets/select.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="product-tab__content" id="summary">
+                                <div class="product-summary"></div>
+                            </div>
+                            <div class="product-info"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

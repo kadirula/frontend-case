@@ -1,0 +1,15 @@
+@font-face{
+    font-family: 'Qanelas';
+    src: url(../fonts/Qanelas-Bold.otf);
+    font-weight: 500;
+}
+@font-face{
+    font-family: 'Qanelas';
+    src: url(../fonts/Qanelas-Regular.otf);
+    font-weight: normal;
+}
+@font-face{
+    font-family: 'Qanelas';
+    src: url(../fonts/Qanelas-ExtraBold.otf);
+    font-weight: 800;
+}
