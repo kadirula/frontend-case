@@ -1,11 +1,4 @@
 
-/*********************** Product Localstorage Operation - begin *********************************/
-setProductsLocalStorage();
-/*********************** Product Localstorage Operation - end ***********************************/
-
-/*********************** Product Info Rendering - begin *********************/
-productInfoRendering();
-/*********************** Product Info Rendering - end *********************/
 
 /*********************** Product Tab Toggle - begin ***********************************/
 const productTabItems = document.querySelectorAll('.product-tab__item');
@@ -50,6 +43,9 @@ productTabItems.forEach(productItem => {
 productModelRender();
 /*********************** Product Model Item Rendering - end ***********************************/
 
+/*********************** Product Info Rendering - begin *********************/
+productInfoRendering();
+/*********************** Product Info Rendering - end *********************/
 
 /*********************** Product Propery Toggle - begin ***********************************/
 const productProperties = document.querySelectorAll('.product-property__item');
@@ -77,49 +73,74 @@ function removeElementClass(element, className) {
 /* Rendering Functions */
 async function productModelRender() {
 
-    const products = getLocalStorageProducts('seat-products');
+    const products = await getProducts();
+
     const selectedProduct = JSON.parse(localStorage.getItem('selected-product'));
 
-    if (selectedProduct) {
-        products.map((product, index) => {
-            const productModel = `
-            <div class="product-model__item ${selectedProduct.id === product.id ? 'active' : ''}" data-productId="${product.id}" onclick="modelItemActive(this)">
-                <span class="product-model__select"><img src="assets/select.png" alt=""></span>
-                <h4 class="product-model__title">${product.name}</h4>
-                <div class="product-model__image">
-                    <img src="assets/cars/${product.image}" class="img-fluid" alt="${product.name}">
-                </div>
-                <p class="product-model__desc"><span>${product.price} TL</span>' den başlayan fiyatlarla
-                </p>
-                <button class="product-model__btn">Select</button>
-            </div>`;
+    products.map((product, index) => {
+        const productModel = `
+        <div class="product-model__item ${index === 0 ? 'active' : ''}" data-productId="${product.id}" onclick="modelItemActive(this)">
+            <span class="product-model__select"><img src="assets/select.png" alt=""></span>
+            <h4 class="product-model__title">${product.name}</h4>
+            <div class="product-model__image">
+                <img src="assets/cars/${product.image}" class="img-fluid" alt="${product.name}">
+            </div>
+            <p class="product-model__desc"><span>${product.price} TL</span>' den başlayan fiyatlarla
+            </p>
+            <button class="product-model__btn">Select</button>
+        </div>`;
 
-            document.querySelector('.product-model').innerHTML += productModel;
-        })
-    }
-    else {
-        products.map((product, index) => {
-            const productModel = `
-            <div class="product-model__item ${index === 0 ? 'active' : ''}" data-productId="${product.id}" onclick="modelItemActive(this)">
-                <span class="product-model__select"><img src="assets/select.png" alt=""></span>
-                <h4 class="product-model__title">${product.name}</h4>
-                <div class="product-model__image">
-                    <img src="assets/cars/${product.image}" class="img-fluid" alt="${product.name}">
-                </div>
-                <p class="product-model__desc"><span>${product.price} TL</span>' den başlayan fiyatlarla
-                </p>
-                <button class="product-model__btn">Select</button>
-            </div>`;
+        document.querySelector('.product-model').innerHTML += productModel;
+    })
 
-            document.querySelector('.product-model').innerHTML += productModel;
-        })
-    }
+    // if (selectedProduct) {
+    //     products.map((product, index) => {
+    //         const productModel = `
+    //         <div class="product-model__item ${selectedProduct.id === product.id ? 'active' : ''}" data-productId="${product.id}" onclick="modelItemActive(this)">
+    //             <span class="product-model__select"><img src="assets/select.png" alt=""></span>
+    //             <h4 class="product-model__title">${product.name}</h4>
+    //             <div class="product-model__image">
+    //                 <img src="assets/cars/${product.image}" class="img-fluid" alt="${product.name}">
+    //             </div>
+    //             <p class="product-model__desc"><span>${product.price} TL</span>' den başlayan fiyatlarla
+    //             </p>
+    //             <button class="product-model__btn">Select</button>
+    //         </div>`;
+
+    //         document.querySelector('.product-model').innerHTML += productModel;
+    //     })
+    // }
+    // else {
+    //     products.map((product, index) => {
+    //         const productModel = `
+    //         <div class="product-model__item ${index === 0 ? 'active' : ''}" data-productId="${product.id}" onclick="modelItemActive(this)">
+    //             <span class="product-model__select"><img src="assets/select.png" alt=""></span>
+    //             <h4 class="product-model__title">${product.name}</h4>
+    //             <div class="product-model__image">
+    //                 <img src="assets/cars/${product.image}" class="img-fluid" alt="${product.name}">
+    //             </div>
+    //             <p class="product-model__desc"><span>${product.price} TL</span>' den başlayan fiyatlarla
+    //             </p>
+    //             <button class="product-model__btn">Select</button>
+    //         </div>`;
+
+    //         document.querySelector('.product-model').innerHTML += productModel;
+    //     })
+    // }
 
 }
 
-function productColorRendering() {
+async function productColorRendering() {
 
-    const product = JSON.parse(localStorage.getItem('selected-product'));
+    let product;
+    if(localStorage.getItem('selected-product') != null){
+        product = JSON.parse(localStorage.getItem('selected-product'));
+    }
+    else{
+        const products = await getProducts();
+        product = products[0];
+    }
+    
 
     const productColorContent = `
         <div class="product-color__center">
@@ -164,11 +185,12 @@ function productModelInfoRender(product, type = 'colors') {
     return productModelInfo;
 }
 
-function productInfoRendering(type = 'colors') {
-    const products = getLocalStorageProducts('seat-products');
+async function productInfoRendering(type = 'colors') {
+    const products = await getProducts();
     const selectedProduct = JSON.parse(localStorage.getItem('selected-product'));
 
     let productInfoContent;
+    // console.log(products);
 
     if (selectedProduct) {
         productInfoContent = productModelInfoRender(selectedProduct, type)
@@ -179,8 +201,15 @@ function productInfoRendering(type = 'colors') {
     document.querySelector('.product-info').innerHTML = productInfoContent;
 }
 
-function productSummaryRendering() {
-    const selectedProduct = JSON.parse(localStorage.getItem('selected-product'));
+async function productSummaryRendering() {
+    let selectedProduct;
+    if(localStorage.getItem('selected-product') != null){
+        selectedProduct = JSON.parse(localStorage.getItem('selected-product'));
+    }
+    else{
+        const products = await getProducts();
+        selectedProduct = products[0];
+    }
     const productSummaryContent = `
         <div class="product-summary__image">
             <span class="product-summary__title">${selectedProduct.name}</span>
@@ -239,7 +268,8 @@ async function getProductById(productId) {
 }
 
 async function setProductsLocalStorage() {
-    if (!localStorage.getItem('seat-products')) {
+
+    if (localStorage.getItem('seat-products') == null) {
         const products = await getProducts();
         localStorage.setItem('seat-products', JSON.stringify(products))
     }
